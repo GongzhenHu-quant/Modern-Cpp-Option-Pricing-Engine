@@ -7,6 +7,10 @@
 * **CRN 数值降噪与希腊字母：** 引入共用随机数技术重置伪随机发生器引擎，完美对消布朗运动噪音，保障了亚式期权在有限差分法下 Delta 和 Gamma 的极速收敛。
 * **内存压榨与缓存命中：** 在百万级路径蒙特卡洛主循环前通过 `reserve` 提前锁死连续内存，彻底消除堆内存重分配开销。
 
+ Python 可视化数据展示
+<img width="1068" height="831" alt="price" src="https://github.com/user-attachments/assets/719f5d59-e1c1-4d01-ae85-a331619cd6ae" />
+<img width="1068" height="425" alt="greeks" src="https://github.com/user-attachments/assets/2942d203-79a3-439c-82a6-7384a2aa2a9f" />
+
 通过 Python 自动化脚本读取 C++ 引擎高频算力输出的数据，直观揭示了：
 1. 亚式期权均值机制对期权溢价的压制。
 2. $CVaR - VaR$ 尾部裂口的收敛（卖方极端敞口风险的削减）。

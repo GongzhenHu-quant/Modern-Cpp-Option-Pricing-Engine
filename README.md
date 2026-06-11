@@ -1,2 +1,13 @@
 # Modern-Cpp-Option-Pricing-Engine
-A C++17 Monte Carlo option pricing engine featuring O(N) VaR/CVaR and CRN-based Greeks sensitivity analysis.
+本项目是一个基于 **C++17** 构建的高性能蒙特卡洛期权定价与风控敏感度分析引擎，辅以 Python 进行多维数据可视化。
+
+## 核心架构与特性 (Core Features)
+* **面向对象与现代 C++：** 严格分离金融产品定义（Models）与计价引擎（Engine），大量运用智能指针与 `[[nodiscard]]`、`explicit` 等现代特性保障编译期内存与类型安全。
+* **$O(N)$ 极限尾部风控算法：** 在计算 VaR和 CVaR时，利用 `std::nth_element` 替代传统的全排序，将时间复杂度从 $O(N \log N)$ 强行降维至 $O(N)$。
+* **CRN 数值降噪与希腊字母：** 引入共用随机数技术重置伪随机发生器引擎，完美对消布朗运动噪音，保障了亚式期权在有限差分法下 Delta 和 Gamma 的极速收敛。
+* **内存压榨与缓存命中：** 在百万级路径蒙特卡洛主循环前通过 `reserve` 提前锁死连续内存，彻底消除堆内存重分配开销。
+
+通过 Python 自动化脚本读取 C++ 引擎高频算力输出的数据，直观揭示了：
+1. 亚式期权均值机制对期权溢价的压制。
+2. $CVaR - VaR$ 尾部裂口的收敛（卖方极端敞口风险的削减）。
+3. 平价附近 Gamma 峰值的左偏偏移现象。

@@ -2,19 +2,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# 设置高级量化研究员风格
 sns.set_theme(style="darkgrid")
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 支持中文
 plt.rcParams['axes.unicode_minus'] = False    # 支持负号
 
-# 1. 读取修复后的希腊字母数据
+# 读取希腊字母数据
 try:
     df = pd.read_csv("greeks_sensitivity.csv")
 except FileNotFoundError:
     print("错误：找不到 greeks_sensitivity.csv 文件！请先运行 C++ 程序。")
     exit()
 
-# 2. 创建 1x2 的高清双子画布
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
 lw = 2.5 # 统一线宽
 
@@ -36,7 +34,6 @@ ax2.set_ylabel("Gamma 值", fontsize=10)
 ax2.axvline(x=200, color="gray", linestyle="--")
 ax2.legend(loc="upper right")
 
-# 3. 总体布局调整与显示
 plt.suptitle("欧式与亚式期权希腊字母 (Greeks) 敏感度全景图", fontsize=14, fontweight='bold')
 plt.tight_layout()
 print("正在生成希腊字母全景对比图...")
